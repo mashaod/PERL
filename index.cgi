@@ -23,14 +23,15 @@ sub getData
 
 	while (my $row = $sth->fetchrow_hashref())
 	{
-		$data->{$row->{'id_article'}} = {$row->{'id_user'}=>$row->{'id_user'}};
+		$data->{$row->{'id_article'}}{id_user} = $row->{'id_user'};
+		$data->{$row->{'id_article'}}{title} = $row->{'title'};
+		$data->{$row->{'id_article'}}{content} = $row->{'content'};
+		$data->{$row->{'id_article'}}{date_insert} = $row->{'date_insert'};
 	}
 		
 	$sth->finish();
 	$dbh->disconnect();
-	#return $data;
-
-	my th->fetchrow_hashref();
+	return $data;
 }
 
 
@@ -38,8 +39,8 @@ print "Content-type: text/html; charset=utf-8\n\n";
 print '<pre>'.Dumper(\%ENV).'</pre>';
 
 
-$|=1; # отключаем буферизацию ввода данных;
-ReadParse(); # получает данные из HTML формы в  хэш %in
+$|=1; # ц▐ц■ц▀ц▄ц─ц·ц│ц┘ц█ ц┌ц∙ц├ц┘ц▓ц┴ц ц│ц┐ц┴ц─ ц≈ц≈ц▐ц└ц│ ц└ц│ц▌ц▌ц≥ц┬;
+ReadParse(); # ц░ц▐ц▄ц∙ц·ц│ц┘ц■ ц└ц│ц▌ц▌ц≥ц┘ ц┴ц  HTML ц├ц▐ц▓ц█ц≥ ц≈  ц┬ц°ц⌡ %in
 
 use vars qw(%in);
 print '<pre>'.Dumper(\%in).'</pre>';
